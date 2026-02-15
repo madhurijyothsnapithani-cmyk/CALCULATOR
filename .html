@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+
+<style>
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f2f2f2;
+    font-family:Arial;
+}
+
+.calculator{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    width:300px;
+}
+
+#display{
+    height:60px;
+    background:#fafafa;
+    border-radius:10px;
+    text-align:right;
+    font-size:30px;
+    padding:10px;
+    margin-bottom:15px;
+    overflow:hidden;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+button{
+    height:55px;
+    border:none;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+    background:#eee;
+}
+
+.operator{
+    color:#ff7a00;
+    font-weight:bold;
+}
+
+.equal{
+    background:#ff7a00;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <div id="display">0</div>
+
+    <div class="buttons">
+        <button onclick="clr()" class="operator">AC</button>
+        <button onclick="del()" class="operator">⌫</button>
+        <button onclick="add('%')" class="operator">%</button>
+        <button onclick="add('/')" class="operator">÷</button>
+
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button onclick="add('*')" class="operator">×</button>
+
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('-')" class="operator">−</button>
+
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('+')" class="operator">+</button>
+
+        <button onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button onclick="calc()" class="equal">=</button>
+    </div>
+</div>
+
+<script>
+let d = document.getElementById("display");
+
+function add(v){
+    if(d.innerHTML=="0") d.innerHTML=v;
+    else d.innerHTML+=v;
+}
+
+function clr(){
+    d.innerHTML="0";
+}
+
+function del(){
+    d.innerHTML=d.innerHTML.slice(0,-1) || "0";
+}
+
+function calc(){
+    try{
+        d.innerHTML = eval(d.innerHTML.replace('%','/100'));
+    }catch{
+        d.innerHTML="Error";
+    }
+}
+</script>
+
+</body>
+</html>
